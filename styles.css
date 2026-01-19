@@ -12,16 +12,20 @@ body {
 }
 
 #stage {
-  height: 100svh;
+  height: 100vh;
+  height: -webkit-fill-available;
   width: 100vw;
+
   padding:
     max(12px, env(safe-area-inset-top))
     max(12px, env(safe-area-inset-right))
     max(12px, env(safe-area-inset-bottom))
     max(12px, env(safe-area-inset-left));
+
   display: grid;
   place-items: center;
 }
+
 
 #grid {
   display: grid;
