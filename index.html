@@ -3,16 +3,49 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1" />
+
+    <title>.</title>
+
+    <meta name="theme-color" content="#000000" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="theme-color" content="#000000" />
-    <title>.</title>
+
+   <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
+
   <body>
     <main id="stage" aria-label="Dot calendar">
       <div id="grid" aria-hidden="true"></div>
     </main>
+
     <script src="./app.js"></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+      }
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", async () => {
+      try {
+        const reg = await navigator.serviceWorker.register("/sw.js");
+
+        // Si un nouveau SW arrive, on recharge une fois pour prendre la nouvelle version
+        reg.addEventListener("updatefound", () => {
+          const nw = reg.installing;
+          if (!nw) return;
+          nw.addEventListener("statechange", () => {
+            if (nw.state === "installed" && navigator.serviceWorker.controller) {
+              location.reload();
+            }
+          });
+        });
+      } catch (e) {
+        // silence
+      }
+    });
+  }
+
+    </script>
   </body>
 </html>
