@@ -72,7 +72,10 @@ function buildDays(startUTC, endUTC, timeZone) {
   for (let i = 0; i < n; i++) {
     const d = addDaysUTC(startUTC, i);
     const key = ymdInTZ(d, timeZone);
-    const isPast = key < todayKey; // today + future are empty circles
+
+    // CHANGE: Past + Today are filled (white), Future is empty circle
+    const isPast = key <= todayKey;
+
     days.push({ isPast });
   }
   return days;
