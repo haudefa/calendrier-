@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>export</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      body {
+        background: #000;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="stage">
+      <div id="grid"></div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <script>
+      window.addEventListener("load", async () => {
+        // attendre que la grille soit rendue
+        setTimeout(async () => {
+          const canvas = await html2canvas(document.body, {
+            backgroundColor: "#000",
+            scale: 2
+          });
+
+          const link = document.createElement("a");
+          link.download = "lockscreen.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
