@@ -1,0 +1,47 @@
+:root {
+  --bg: #000;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  overflow: hidden; /* no scroll */
+}
+
+#stage {
+  height: 100svh;
+  width: 100vw;
+  padding:
+    max(12px, env(safe-area-inset-top))
+    max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom))
+    max(12px, env(safe-area-inset-left));
+  display: grid;
+  place-items: center;
+}
+
+#grid {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  /* colon count + gap are set by JS */
+}
+
+.dot {
+  width: var(--d);
+  height: var(--d);
+  border-radius: 999px;
+}
+
+.dot.past {
+  background: #fff;
+  border: 0;
+}
+
+.dot.future {
+  background: transparent;
+  border: var(--b) solid rgba(255,255,255,0.65);
+}
