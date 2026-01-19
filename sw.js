@@ -1,4 +1,4 @@
-const CACHE = "dot-home-v3"; // incrémente v4, v5… quand tu changes des fichiers
+const CACHE = "dot-home-v4"; // incrémente v4, v5… quand tu changes des fichiers
 const ASSETS = [
   "/",
   "/index.html",
